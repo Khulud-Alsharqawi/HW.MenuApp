@@ -69,9 +69,13 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
             }
             //
-            R.id.Login -> {Toast.makeText(this,"login action",Toast.LENGTH_SHORT).show()
-                            intent=Intent(this,logInOut::class.java)
-                            startActivity(intent)
+            R.id.Login -> {
+
+                if (item.title=="login"){
+                Toast.makeText(this,"logout action",Toast.LENGTH_SHORT).show()
+                    item.title = "log out"}
+                else { item.title = "login"}
+
             }
         }
 
