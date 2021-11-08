@@ -13,11 +13,20 @@
         android:id="@+id/setting"
         android:icon="@drawable/ic_baseline_list_24"
         android:title="Setting"
-        app:showAsAction="never" />
+        app:showAsAction="never"
+        />
 
     <item
-        android:id="@+id/Login"
+        android:id="@+id/LogIn"
         android:icon="@drawable/ic_baseline_list_24"
         android:title="login"
-        app:showAsAction="never" />
+        app:showAsAction="never"
+        android:visible="true"/>
+
+    <item
+        android:id="@+id/LogOut"
+        android:icon="@drawable/ic_baseline_list_24"
+        android:title="logout"
+        app:showAsAction="never"
+        android:visible="false"/>
 </menu>

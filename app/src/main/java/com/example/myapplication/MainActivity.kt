@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 
 const val TAG = "MainActivity"
+var Islogin = true
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -26,6 +28,7 @@ class MainActivity : AppCompatActivity() {
         super.onStart()
         Log.d(TAG, "onStart Called")
     }
+
     override fun onResume() {
         super.onResume()
         Log.d(TAG, "onResume Called")
@@ -50,37 +53,54 @@ class MainActivity : AppCompatActivity() {
         super.onRestart()
         Log.d(TAG, "onRestart Called")
     }
-//==================================================
+
+    //==================================================
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.layout_manu,menu)
+        menuInflater.inflate(R.menu.layout_manu, menu)
         return true
     }
 
+    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
+        var logIn = menu?.findItem(R.id.LogIn)
+        var logout = menu?.findItem(R.id.LogOut)
+        if ( Islogin) {
+
+            Islogin == true
+            logIn?.setVisible(false)
+            logout?.setVisible(true)
+        } else {
+            logIn?.setVisible(true)
+            logout?.setVisible(false)
+        }
+        return super.onPrepareOptionsMenu(menu)
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId){
+        when (item.itemId) {
             //action ->
-            R.id.contact_Us ->{ Toast.makeText(this,"Contact Us option:",Toast.LENGTH_SHORT).show()
-            intent= Intent(this,contactUs::class.java)
-            startActivity(intent)
-            }
-            //
-            R.id.setting ->{Toast.makeText(this,"setting option",Toast.LENGTH_SHORT).show()
-            intent= Intent(this,setting::class.java)
+            R.id.contact_Us -> {
+                Toast.makeText(this, "Contact Us option:", Toast.LENGTH_SHORT).show()
+                intent = Intent(this, contactUs::class.java)
                 startActivity(intent)
             }
             //
-            R.id.Login -> {
+            R.id.setting -> {
+                Toast.makeText(this, "setting option", Toast.LENGTH_SHORT).show()
+                intent = Intent(this, setting::class.java)
+                startActivity(intent)
+            }
+            //
+            R.id.LogIn -> {
 
-                if (item.title=="login"){
-                Toast.makeText(this,"logout action",Toast.LENGTH_SHORT).show()
-                    item.title = "log out"}
-                else { item.title = "login"}
+                if (item.title == "login") {
+                    Toast.makeText(this, "logout action", Toast.LENGTH_SHORT).show()
 
+                }
             }
         }
+            return super.onOptionsItemSelected(item)
 
-        return super.onOptionsItemSelected(item)
+
 
     }
-
 }
