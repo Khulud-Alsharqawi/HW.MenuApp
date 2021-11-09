@@ -4,12 +4,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.ActionMode
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
+
 
 const val TAG = "MainActivity"
 var Islogin = true
@@ -61,16 +59,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
-        var logIn = menu?.findItem(R.id.LogIn)
-        var logout = menu?.findItem(R.id.LogOut)
+        val logIn = menu?.findItem(R.id.LogIn)
+        val logout = menu?.findItem(R.id.LogOut)
         if ( Islogin) {
 
-            Islogin == true
-            logIn?.setVisible(false)
-            logout?.setVisible(true)
+            logIn?.isVisible = false
+            logout?.isVisible = true
+            Islogin=false
         } else {
-            logIn?.setVisible(true)
-            logout?.setVisible(false)
+            logIn?.isVisible = true
+            logout?.isVisible = false
+            Islogin=true
+
         }
         return super.onPrepareOptionsMenu(menu)
     }
@@ -90,13 +90,7 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
             }
             //
-            R.id.LogIn -> {
 
-                if (item.title == "login") {
-                    Toast.makeText(this, "logout action", Toast.LENGTH_SHORT).show()
-
-                }
-            }
         }
             return super.onOptionsItemSelected(item)
 
